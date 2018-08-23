@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Inherit defaults from Spring Boot -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.12.RELEASE</version>
+    </parent>
+
+    <groupId>uk.gov.defra.datareturns</groupId>
+    <artifactId>api-platform</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <prerequisites>
+        <maven>3.1</maven>
+    </prerequisites>
+
+    <name>Defra Data-Returns Platform</name>
+    <description>Defra Data-Returns Platform aggregator project</description>
+    <url>https://github.com/DEFRA/data-returns-api-platform/</url>
+
+    <modules>
+        <module>build-tools</module>
+        <module>api-parent</module>
+        <module>api-common</module>
+    </modules>
+
+    <organization>
+        <name>Environment Agency</name>
+        <url>http://www.environment-agency.gov.uk</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <id>sam</id>
+            <name>Sam Gardner-Dell</name>
+            <email>sam.gardner-dell at environment-agency.gov.uk</email>
+        </developer>
+        <developer>
+            <id>Graham</id>
+            <name>Graham Willis</name>
+            <email>graham.willis@druidwood.co.uk</email>
+        </developer>
+    </developers>
+</project>
