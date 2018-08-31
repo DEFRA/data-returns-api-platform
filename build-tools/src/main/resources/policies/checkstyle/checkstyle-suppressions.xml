@@ -12,7 +12,4 @@
 
     <!-- Allow inline conditionals -->
     <suppress checks="AvoidInlineConditionals" files=".*"/>
-
-    <!-- Don't require package-info.java -->
-    <suppress checks="JavadocPackage" files=".*"/>
 </suppressions>
