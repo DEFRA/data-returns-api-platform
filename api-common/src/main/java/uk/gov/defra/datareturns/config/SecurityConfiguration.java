@@ -1,19 +1,8 @@
 package uk.gov.defra.datareturns.config;
 
-import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.access.PermissionEvaluator;
-import org.springframework.security.access.expression.SecurityExpressionRoot;
-import org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler;
-import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
-import org.springframework.security.access.expression.method.MethodSecurityExpressionOperations;
-import org.springframework.security.authentication.AuthenticationTrustResolver;
-import org.springframework.security.authentication.AuthenticationTrustResolverImpl;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
@@ -21,8 +10,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 
-import javax.inject.Inject;
-import java.io.Serializable;
 import java.util.Arrays;
 
 /**
@@ -73,13 +60,13 @@ public class SecurityConfiguration {
     static class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         @Override
         protected void configure(final HttpSecurity http) throws Exception {
-            http.csrf().disable()
-                    .authorizeRequests()
-                    .antMatchers(AUTH_WHITELIST).permitAll()
-                    .antMatchers("/api/**").fullyAuthenticated().anyRequest()
-                    .authenticated()
-                    .and()
-                    .httpBasic();
+            http.csrf().disable();
+//                    .authorizeRequests()
+//                    .antMatchers(AUTH_WHITELIST).permitAll()
+//                    .antMatchers("/api/**").fullyAuthenticated().anyRequest()
+//                    .authenticated()
+//                    .and()
+//                    .httpBasic();
         }
     }
 }
