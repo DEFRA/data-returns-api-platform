@@ -24,7 +24,6 @@
     <url>https://github.com/DEFRA/data-returns-api-platform/</url>
 
     <modules>
-        <module>build-tools</module>
         <module>api-parent</module>
         <module>api-common</module>
     </modules>
