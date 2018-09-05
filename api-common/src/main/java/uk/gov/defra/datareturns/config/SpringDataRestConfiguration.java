@@ -70,15 +70,6 @@ public class SpringDataRestConfiguration implements RepositoryRestConfigurer {
             log.info("Registering projection {} from class {} with entity classes {}", p.name(), c.getSimpleName(), entityClasses);
             config.getProjectionConfiguration().addProjection(c, p.name(), entityClasses.toArray(new Class[entityClasses.size()]));
         }
-
-        // Expose ids.
-        final Metamodel metamodel = factory.getMetamodel();
-        for (final ManagedType<?> managedType : metamodel.getManagedTypes()) {
-            final Class<?> javaType = managedType.getJavaType();
-            if (javaType.isAnnotationPresent(Entity.class)) {
-                config.exposeIdsFor(managedType.getJavaType());
-            }
-        }
     }
 
     @Override
