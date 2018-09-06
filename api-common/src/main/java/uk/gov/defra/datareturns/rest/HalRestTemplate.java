@@ -21,7 +21,6 @@ public class HalRestTemplate extends RestTemplate {
         final ObjectMapper objectMapper = Jackson2ObjectMapperBuilder.json()
                 .findModulesViaServiceLoader(true)
                 .modulesToInstall(new Jackson2HalModule())
-                .propertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE)
                 .featuresToDisable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
                 .build();
         final MappingJackson2HttpMessageConverter halConverter = new TypeConstrainedMappingJackson2HttpMessageConverter(ResourceSupport.class);

@@ -45,7 +45,6 @@ spring:
       FAIL_ON_EMPTY_BEANS: false
     deserialization:
       FAIL_ON_UNKNOWN_PROPERTIES: false
-    property-naming-strategy: SNAKE_CASE
 
   jpa:
     hibernate:
