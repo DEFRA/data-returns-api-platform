@@ -66,7 +66,7 @@ public abstract class AbstractBaseEntity {
      */
     @LastModifiedDate
     @Column(nullable = false)
-    @JsonProperty("_last_modified")
+    @JsonProperty("_lastModified")
     @ApiModelProperty(readOnly = true)
     @SuppressFBWarnings("EI_EXPOSE_REP")
     private Date lastModified;

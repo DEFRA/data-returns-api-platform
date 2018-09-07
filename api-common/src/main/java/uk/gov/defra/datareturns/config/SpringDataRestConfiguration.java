@@ -20,8 +20,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExc
 
 import javax.persistence.Entity;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.metamodel.ManagedType;
-import javax.persistence.metamodel.Metamodel;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
