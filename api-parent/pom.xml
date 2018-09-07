@@ -115,10 +115,6 @@
 
         <jgrapht-core.version>1.2.0</jgrapht-core.version>
 
-        <!-- Univocity CSV parser -->
-        <univocity.parsers.version>2.7.5</univocity.parsers.version>
-        <juniversalchardet.version>2.1.0</juniversalchardet.version>
-
         <liquibase-slf4j.version>2.0.0</liquibase-slf4j.version>
         <liquibase-hibernate5.version>3.6</liquibase-hibernate5.version>
 
@@ -227,20 +223,6 @@
                 <groupId>net.anthavio</groupId>
                 <artifactId>airbrake-logback</artifactId>
                 <version>${airbrake-logback.version}</version>
-            </dependency>
-
-            <!-- CSV Parsing -->
-            <dependency>
-                <groupId>com.univocity</groupId>
-                <artifactId>univocity-parsers</artifactId>
-                <version>${univocity.parsers.version}</version>
-            </dependency>
-
-            <!-- Charset autodetection library -->
-            <dependency>
-                <groupId>com.github.albfernandez</groupId>
-                <artifactId>juniversalchardet</artifactId>
-                <version>${juniversalchardet.version}</version>
             </dependency>
 
             <!-- Apache commons -->
@@ -455,25 +437,6 @@
             <version>${liquibase-hibernate5.version}</version>
             <scope>compile</scope>
         </dependency>
-
-        <!-- CSV Parsing -->
-        <dependency>
-            <groupId>com.univocity</groupId>
-            <artifactId>univocity-parsers</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.github.albfernandez</groupId>
-            <artifactId>juniversalchardet</artifactId>
-        </dependency>
-
-        <!-- Mustache support -->
-        <!--
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-mustache</artifactId>
-        </dependency>
-        -->
-
 
         <!--Hibernate validator -->
         <dependency>
@@ -892,17 +855,6 @@
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>post-unit-test</id>
-                                <phase>test</phase>
-                                <goals>
-                                    <goal>report</goal>
-                                </goals>
-                                <configuration>
-                                    <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
-                                    <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
-                                </configuration>
-                            </execution>
-                            <execution>
                                 <id>pre-integration-test</id>
                                 <phase>pre-integration-test</phase>
                                 <goals>
@@ -914,18 +866,6 @@
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>post-integration-test</id>
-                                <phase>post-integration-test</phase>
-                                <goals>
-                                    <goal>report</goal>
-                                </goals>
-                                <configuration>
-                                    <dataFile>${project.build.directory}/coverage-reports/jacoco-it.exec</dataFile>
-                                    <outputDirectory>${project.reporting.outputDirectory}/jacoco-it</outputDirectory>
-                                </configuration>
-                            </execution>
-
-                            <execution>
                                 <id>merge-results</id>
                                 <phase>verify</phase>
                                 <goals>
@@ -936,28 +876,16 @@
                                         <fileSet>
                                             <directory>${project.build.directory}/coverage-reports</directory>
                                             <includes>
-                                                <include>*.exec</include>
+                                                <include>jacoco-ut.exec</include>
+                                                <include>jacoco-it.exec</include>
                                             </includes>
                                         </fileSet>
                                     </fileSets>
                                     <destFile>${project.build.directory}/coverage-reports/aggregate.exec</destFile>
                                 </configuration>
                             </execution>
-                            <execution>
-                                <id>post-merge-report</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>report</goal>
-                                </goals>
-                                <configuration>
-                                    <dataFile>${project.build.directory}/coverage-reports/aggregate.exec</dataFile>
-                                    <outputDirectory>${project.reporting.outputDirectory}/jacoco-aggregate</outputDirectory>
-                                </configuration>
-                            </execution>
                         </executions>
                     </plugin>
-
-
                     <plugin>
                         <groupId>org.owasp</groupId>
                         <artifactId>dependency-check-maven</artifactId>
@@ -968,6 +896,11 @@
                                 </goals>
                             </execution>
                         </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-site-plugin</artifactId>
+                        <version>${maven-site-plugin.version}</version>
                     </plugin>
                 </plugins>
             </build>
@@ -981,6 +914,21 @@
                                 <inherited>false</inherited>
                                 <reports>
                                     <report>aggregate</report>
+                                </reports>
+                            </reportSet>
+                        </reportSets>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>${jacoco-maven-plugin.version}</version>
+                        <reportSets>
+                            <reportSet>
+                                <configuration>
+                                    <dataFile>${project.build.directory}/coverage-reports/aggregate.exec</dataFile>
+                                </configuration>
+                                <reports>
+                                    <report>report</report>
                                 </reports>
                             </reportSet>
                         </reportSets>
@@ -1099,30 +1047,6 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
-            </plugin>
-
-
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>${jacoco-maven-plugin.version}</version>
-                <reportSets>
-                    <reportSet>
-                        <inherited>true</inherited>
-                        <reports>
-                            <report>report</report>
-                        </reports>
-                    </reportSet>
-                    <reportSet>
-                        <configuration>
-                            <destFile>${project.build.directory}/aggregate-coverage/aggregate.exec</destFile>
-                        </configuration>
-                        <inherited>false</inherited>
-                        <reports>
-                            <report>merge</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
             </plugin>
         </plugins>
 
