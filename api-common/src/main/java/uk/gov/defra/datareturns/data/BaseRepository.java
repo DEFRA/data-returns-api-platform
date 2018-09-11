@@ -8,8 +8,7 @@ import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
-import org.springframework.data.jpa.repository.support.QueryDslJpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.core.EntityInformation;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -28,8 +27,7 @@ import java.util.List;
  */
 @NoRepositoryBean
 @PreAuthorize("hasRole('USER')")
-public interface BaseRepository<E, ID extends Serializable>
-        extends JpaRepository<E, ID>, JpaSpecificationExecutor<E>, QueryDslPredicateExecutor<E> {
+public interface BaseRepository<E, ID extends Serializable> extends JpaRepository<E, ID>, JpaSpecificationExecutor<E> {
     /**
      * Perform a full-text search of the entity based on the given keywords.
      *
@@ -45,7 +43,7 @@ public interface BaseRepository<E, ID extends Serializable>
      * @param <ID> the type of the entity's primary key
      */
     @Slf4j
-    class BaseRepositoryImpl<E, ID extends Serializable> extends QueryDslJpaRepository<E, ID> implements BaseRepository<E, ID> {
+    class BaseRepositoryImpl<E, ID extends Serializable> extends SimpleJpaRepository<E, ID> implements BaseRepository<E, ID> {
         private final EntityInformation<E, ID> entityInformation;
         private final EntityManager entityManager;
 

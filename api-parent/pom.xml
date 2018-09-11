@@ -392,14 +392,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.querydsl</groupId>
-            <artifactId>querydsl-apt</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.querydsl</groupId>
-            <artifactId>querydsl-jpa</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-jpamodelgen</artifactId>
         </dependency>
@@ -748,10 +740,8 @@
                     </compilerArgs>
                     <annotationProcessors>
                         <annotationProcessor>lombok.launch.AnnotationProcessorHider$AnnotationProcessor</annotationProcessor>
-                        <annotationProcessor>org.springframework.boot.configurationprocessor.ConfigurationMetadataAnnotationProcessor
-                        </annotationProcessor>
+                        <annotationProcessor>org.springframework.boot.configurationprocessor.ConfigurationMetadataAnnotationProcessor</annotationProcessor>
                         <annotationProcessor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</annotationProcessor>
-                        <annotationProcessor>com.querydsl.apt.jpa.JPAAnnotationProcessor</annotationProcessor>
                     </annotationProcessors>
                 </configuration>
             </plugin>
@@ -831,6 +821,9 @@
                         <configuration>
                             <destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
                             <propertyName>surefireArgLine</propertyName>
+                            <excludes>
+                                <exclude>**/*_</exclude>
+                            </excludes>
                         </configuration>
                     </execution>
                     <execution>
@@ -842,6 +835,9 @@
                         <configuration>
                             <destFile>${project.build.directory}/coverage-reports/jacoco-it.exec</destFile>
                             <propertyName>failsafeArgLine</propertyName>
+                            <excludes>
+                                <exclude>**/*_</exclude>
+                            </excludes>
                         </configuration>
                     </execution>
                     <execution>
@@ -1019,6 +1015,9 @@
                     <reportSet>
                         <configuration>
                             <dataFile>${project.build.directory}/coverage-reports/aggregate.exec</dataFile>
+                            <excludes>
+                                <exclude>**/*_.class</exclude>
+                            </excludes>
                         </configuration>
                         <reports>
                             <report>report</report>
