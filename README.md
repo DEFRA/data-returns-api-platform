@@ -2,6 +2,7 @@
 [![Build Status](https://travis-ci.org/DEFRA/data-returns-api-platform.svg?branch=master)](https://travis-ci.org/DEFRA/data-returns-api-platform)
 [![Maintainability](https://api.codeclimate.com/v1/badges/58078d7827cdeaefe0f0/maintainability)](https://codeclimate.com/github/DEFRA/data-returns-api-platform/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/58078d7827cdeaefe0f0/test_coverage)](https://codeclimate.com/github/DEFRA/data-returns-api-platform/test_coverage)
+[![Jitpack.io](https://jitpack.io/v/DEFRA/data-returns-api-platform.svg)](https://jitpack.io/#DEFRA/data-returns-api-platform)
 [![Licence](https://img.shields.io/badge/Licence-OGLv3-blue.svg)](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3)
 
 The API platform provides a framework for developing RESTful API's using Spring Data REST for Java.
