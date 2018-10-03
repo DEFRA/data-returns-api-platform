@@ -875,6 +875,7 @@
                 </executions>
                 <configuration>
                     <mainClass>${start-class}</mainClass>
+                    <executable>true</executable>
                 </configuration>
             </plugin>
 
