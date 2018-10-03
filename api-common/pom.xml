@@ -35,6 +35,23 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- Skip the spring-boot repackage goal (this is a commons project, not an api impl) -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 </project>
