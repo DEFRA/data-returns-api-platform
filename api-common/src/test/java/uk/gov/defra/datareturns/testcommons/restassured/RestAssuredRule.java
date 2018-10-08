@@ -2,6 +2,7 @@ package uk.gov.defra.datareturns.testcommons.restassured;
 
 import com.google.common.base.Charsets;
 import io.restassured.RestAssured;
+import io.restassured.authentication.AuthenticationScheme;
 import io.restassured.filter.log.LogDetail;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.rules.ExternalResource;
@@ -36,8 +37,13 @@ public class RestAssuredRule extends ExternalResource {
         RestAssured.baseURI = "http://localhost";
         RestAssured.port = port;
         RestAssured.basePath = "/api";
-        RestAssured.authentication = preemptive().basic("admin", "password");
+        RestAssured.authentication = this.getAuthentication();
         RestAssured.config().getEncoderConfig().defaultContentCharset(Charsets.UTF_8);
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails(LogDetail.ALL);
+    }
+
+    @SuppressWarnings("WeakerAccess")
+    protected AuthenticationScheme getAuthentication() {
+        return preemptive().basic("admin", "password");
     }
 }
