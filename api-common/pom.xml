@@ -30,6 +30,9 @@
                             <classifier>testcommons</classifier>
                             <includes>
                                 <include>**/testcommons/**</include>
+                                <include>*.yml</include>
+                                <include>*.xml</include>
+                                <include>*.properties</include>
                             </includes>
                         </configuration>
                     </execution>

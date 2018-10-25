@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <conversionRule conversionWord="loglvl" converterClass="uk.gov.defra.datareturns.util.LogHighlightingConverter"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%white(%d{HH:mm:ss.SSS}) %loglvl(%-5level %40.40logger{35}): %boldWhite(%msg) %n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="warn">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

@@ -20,7 +20,9 @@ public class ConfigurationLogger implements EnvironmentPostProcessor {
 
     @Override
     public void postProcessEnvironment(final ConfigurableEnvironment environment, final SpringApplication application) {
-        printConfiguration(environment);
+        if ("true".equals(environment.getProperty("startup.print-environment"))) {
+            printConfiguration(environment);
+        }
     }
 
     /**

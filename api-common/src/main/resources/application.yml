@@ -88,6 +88,7 @@ server:
   compression:
     enabled: true
 
+
 errbit:
   enabled: false
   api-key: 1234567890
@@ -110,37 +111,19 @@ liquibase:
 logging:
   level:
     root: warn
-    jndi: warn
-    uk.gov.defra.datareturns: info
-
+    uk.gov: info
     io.undertow: info
-    io.undertow.websockets: error
+
+    org.springframework.web.servlet.handler: error
+#    io.undertow.websockets: error
     org.xnio: info
-
-    org.eclipse.jetty: warn
-    org.apache.http: warn
-    org.springframework: warn
-    org.springframework.boot: warn
-    org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainer: info
-    org.springframework.boot.autoconfigure.security: info
-    org.springframework.security: info
-    org.springframework.beans: info
-    org.springframework.aop: info
-    org.aopalliance.aop: info
-    org.springframework.cache: debug
-    javax.xml.bind: warn
-
     # Database
     org.hibernate: warn
-    org.hibernate.engine.jdbc.spi.SqlExceptionHelper: off
-
+#    org.hibernate.engine.jdbc.spi.SqlExceptionHelper: off
     liquibase: info
 
-    # Amazon S3 API
-    com.amazonaws: warn
-    org.apache.http.wire: warn
-    # Metrics logging
-    metrics: info
+startup:
+  print-environment: false
 
 ---
 ###############################################################################
@@ -175,48 +158,17 @@ endpoints:
 # Configure loggers for debug - should configure debug by default and use warn/info on stuff that is not useful to reduce unwanted spam
 logging:
   level:
-    root: debug
+    root: info
     jndi: info
-    uk.gov.defra.datareturns: debug
-    io.undertow: info
-    org.xnio: info
-    org.eclipse.jetty: info
-    org.eclipse.jetty.server.Server: debug
-    org.eclipse.jetty.server.session: info
-    org.eclipse.jetty.servlet.ServletHandler: info
-    org.apache.http: info
-    org.jvnet.mimepull: info
-
-    org.springframework: info
-    org.springframework.beans.factory: info
-    org.springframework.boot: info
-    org.springframework.jndi: info
-    org.springframework.core: info
-    org.springframework.context.annotation: info
-    org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainer: info
-
-    # Set to debug to enable the auto-configuration report at startup
+    uk.gov: debug
+    org.springframework.cache: debug
     org.springframework.boot.autoconfigure: debug
-    org.reflections: info
-
     # Database
     org.hibernate: info
     org.hibernate.stat: debug
     org.hibernate.engine.internal.StatisticalLoggingSessionEventListener: debug
-    liquibase: info
+    liquibase: debug
 
-    # Sun rmi
-    sun.rmi: info
+startup:
+  print-environment: true
 
-    # Springfox swagger gen
-#    springfox.documentation.schema: info
-
-    # Amazon S3 API
-    com.amazonaws: info
-    org.apache.http.wire: info
-    # Glassfish
-    org.glassfish: info
-    # Useful to log REST requests and responses (set to info for headers or debug for full request/response logging)
-    org.glassfish.jersey.logging.LoggingFeature: debug
-    # Metrics logging
-    metrics: debug
