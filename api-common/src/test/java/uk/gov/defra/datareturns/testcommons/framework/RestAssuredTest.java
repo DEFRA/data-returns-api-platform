@@ -3,7 +3,9 @@ package uk.gov.defra.datareturns.testcommons.framework;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.TestPropertySource;
+import uk.gov.defra.datareturns.testcommons.restassured.RestAssuredTestListener;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -16,13 +18,15 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ComponentScan(
         basePackages = "uk.gov.defra",
         includeFilters = {
-                @ComponentScan.Filter(type = FilterType.REGEX, pattern = "uk.gov.defra.datareturns.*")
+                @ComponentScan.Filter(type = FilterType.REGEX, pattern = "uk.gov.defra.*")
         }
 )
-@ActiveProfiles("integration-test")
-public @interface WebIntegrationTest {
+@TestExecutionListeners(value = {RestAssuredTestListener.class},
+                        mergeMode = TestExecutionListeners.MergeMode.MERGE_WITH_DEFAULTS)
+@TestPropertySource(locations = "classpath:h2-test.properties")
+public @interface RestAssuredTest {
 }

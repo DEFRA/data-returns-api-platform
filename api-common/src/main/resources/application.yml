@@ -69,7 +69,6 @@ spring:
       org.hibernate.envers:
         # Configure envers to use a sequence style generator
         use_revision_entity_with_native_id: false
-
         cache:
           use_query_cache: false
 #          use_second_level_cache: false
@@ -88,18 +87,11 @@ server:
   compression:
     enabled: true
 
-
 errbit:
   enabled: false
   api-key: 1234567890
   env: Local Development Environment
   url: https://localhost:8080/notifier_api/v2/notices
-
-# Configuration for the management server and its endpoints
-management:
-  port: -1
-endpoints:
-  enabled: false
 
 # Liquibase database migration configuration values
 liquibase:
@@ -143,18 +135,6 @@ spring:
 # Spring boot debug flag
 debug: true
 
-# Configuration for the management server and its endpoints
-management:
-  security:
-    enabled: false
-endpoints:
-  enabled: true
-  shutdown:
-    enabled: true
-    sensitive: false
-  info:
-    enabled: true
-
 # Configure loggers for debug - should configure debug by default and use warn/info on stuff that is not useful to reduce unwanted spam
 logging:
   level:
@@ -172,3 +152,23 @@ logging:
 startup:
   print-environment: true
 
+---
+
+###############################################################################
+#
+# Profile: h2
+#
+###############################################################################
+spring:
+  profiles: h2
+  datasource:
+    url: jdbc:h2:mem:test
+    driver-class-name: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+
+# Enable liquibase migrations when running in-memory
+liquibase:
+  enabled: true
+
+---
