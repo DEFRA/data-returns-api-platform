@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.15.RELEASE</version>
+        <version>1.5.17.RELEASE</version>
     </parent>
 
     <groupId>uk.gov.defra.datareturns</groupId>
@@ -95,7 +95,7 @@
         <docker.image.prefix>drp</docker.image.prefix>
         <dockerfile-plugin.version>1.4.4</dockerfile-plugin.version>
 
-        <spring-boot.version>1.5.15.RELEASE</spring-boot.version>
+        <spring-boot.version>1.5.17.RELEASE</spring-boot.version>
         <springfox.version>2.9.2</springfox.version>
 
         <!-- Database driver versions -->
@@ -737,13 +737,8 @@
                     <target>${java.version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <compilerArgs>
-                        <arg>-Xlint</arg>
+                        <arg>-Xlint:all</arg>
                     </compilerArgs>
-                    <annotationProcessors>
-                        <annotationProcessor>lombok.launch.AnnotationProcessorHider$AnnotationProcessor</annotationProcessor>
-                        <annotationProcessor>org.springframework.boot.configurationprocessor.ConfigurationMetadataAnnotationProcessor</annotationProcessor>
-                        <annotationProcessor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</annotationProcessor>
-                    </annotationProcessors>
                 </configuration>
             </plugin>
 
