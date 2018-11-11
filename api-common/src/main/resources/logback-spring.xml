@@ -5,7 +5,7 @@
     <conversionRule conversionWord="loglvl" converterClass="uk.gov.defra.datareturns.util.LogHighlightingConverter"/>
 
     <springProperty scope="context" name="logDir" source="logging.path" defaultValue="./log"/>
-    <springProperty scope="context" name="applicationName" source="server.display-name" defaultValue="name_not_configured"/>
+    <springProperty scope="context" name="applicationName" source="spring.application.name" defaultValue="name_not_configured"/>
     <springProperty scope="context" name="errbitEnabled" source="errbit.enabled" defaultValue="false"/>
     <springProperty scope="context" name="errbitApiKey" source="errbit.api-key" defaultValue=""/>
     <springProperty scope="context" name="errbitEnv" source="errbit.env" defaultValue="Local Development Environment"/>

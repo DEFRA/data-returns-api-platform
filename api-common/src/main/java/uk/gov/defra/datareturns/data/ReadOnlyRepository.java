@@ -12,25 +12,24 @@ import java.util.Optional;
  * @author Sam Gardner-Dell
  */
 @NoRepositoryBean
-public interface ReadOnlyRepository<T, I extends Serializable> extends Repository<T, I> {
-
+public interface ReadOnlyRepository<T, ID extends Serializable> extends Repository<T, ID> {
     /**
      * Retrieves an entity by its id.
      *
      * @param id must not be {@literal null}.
-     * @return the entity with the given id or {@literal null} if none found
-     * @throws IllegalArgumentException if {@code id} is {@literal null}
+     * @return the entity with the given id or {@literal Optional#empty()} if none found
+     * @throws IllegalArgumentException if {@code id} is {@literal null}.
      */
-    Optional<T> findOne(I id);
+    Optional<T> findById(ID id);
 
     /**
      * Returns whether an entity with the given id exists.
      *
      * @param id must not be {@literal null}.
-     * @return true if an entity with the given id exists, alse otherwise
-     * @throws IllegalArgumentException if {@code id} is {@literal null}
+     * @return {@literal true} if an entity with the given id exists, {@literal false} otherwise.
+     * @throws IllegalArgumentException if {@code id} is {@literal null}.
      */
-    boolean exists(I id);
+    boolean existsById(ID id);
 
     /**
      * Returns all instances of the type.
@@ -45,7 +44,7 @@ public interface ReadOnlyRepository<T, I extends Serializable> extends Repositor
      * @param ids
      * @return
      */
-    Iterable<T> findAll(Iterable<I> ids);
+    Iterable<T> findAllById(Iterable<ID> ids);
 
     /**
      * Returns the number of entities available.

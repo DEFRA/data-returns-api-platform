@@ -29,7 +29,7 @@ spring:
   cache:
     type: simple
 
-  http:
+  servlet:
     multipart:
       max-file-size: 4MB
 
@@ -47,10 +47,12 @@ spring:
       FAIL_ON_UNKNOWN_PROPERTIES: false
 
   jpa:
+    open-in-view: false
     hibernate:
       ddl-auto: validate
       naming:
         implicit-strategy: uk.gov.defra.datareturns.persistence.DataReturnsImplicitNamingStrategy
+      use-new-id-generator-mappings: true
     properties:
       # disable validation via jpa/hibernate, spring will take care of this
       javax:
@@ -58,34 +60,29 @@ spring:
           validation:
             mode: none
       hibernate:
-        jdbc.fetch_size: 30
-        jdbc.batch_size: 30
+        jdbc.batch_size: 50
         order_inserts: true
         order_updates: true
-        search:
-          default:
-            directory_provider: filesystem
-            indexBase: /tmp/
+        jpa:
+          compliance:
+            global_id_generators: true
       org.hibernate.envers:
         # Configure envers to use a sequence style generator
         use_revision_entity_with_native_id: false
         cache:
           use_query_cache: false
-#          use_second_level_cache: false
-##          region:
-##            factory_class: com.hazelcast.hibernate.HazelcastCacheRegionFactory
-##          hazelcast:
-##            use_native_client: true
-##            native_client_address: localhost:5701
-##            native_client_group: dev
-##            native_client_password: dev-pass
+
+  # Liquibase database migration configuration values
+  liquibase:
+    changeLog: classpath:/db/changelog/db.changelog-master.xml
+    # Disable liquibase migrations by default (may be overriden in project/profile specific configuration)
+    enabled: false
 
 ## Configuration for the web server
 server:
-  display-name: ${spring.application.name}
   address: 0.0.0.0
   compression:
-    enabled: true
+    enabled: false
 
 errbit:
   enabled: false
@@ -93,26 +90,18 @@ errbit:
   env: Local Development Environment
   url: https://localhost:8080/notifier_api/v2/notices
 
-# Liquibase database migration configuration values
-liquibase:
-  changeLog: classpath:/db/changelog/db.changelog-master.xml
-  # Disable liquibase migrations by default (may be overriden in project/profile specific configuration)
-  enabled: false
-
 # Default logging levels (provide minimal level of logging here)
 logging:
   level:
     root: warn
     uk.gov: info
-    io.undertow: info
 
     org.springframework.web.servlet.handler: error
-#    io.undertow.websockets: error
-    org.xnio: info
     # Database
     org.hibernate: warn
-#    org.hibernate.engine.jdbc.spi.SqlExceptionHelper: off
+    #    org.hibernate.engine.jdbc.spi.SqlExceptionHelper: off
     liquibase: info
+    liquibase.executor.jvm.JdbcExecutor: warn
 
 startup:
   print-environment: false
@@ -146,8 +135,10 @@ logging:
     # Database
     org.hibernate: info
     org.hibernate.stat: debug
+    org.hibernate.type: trace
     org.hibernate.engine.internal.StatisticalLoggingSessionEventListener: debug
     liquibase: debug
+    liquibase.executor.jvm.JdbcExecutor: debug
 
 startup:
   print-environment: true
@@ -166,9 +157,7 @@ spring:
     driver-class-name: org.h2.Driver
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
-
-# Enable liquibase migrations when running in-memory
-liquibase:
-  enabled: true
-
+  # Enable liquibase migrations when running in-memory
+  liquibase:
+    enabled: true
 ---

@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.17.RELEASE</version>
+        <version>2.1.0.RELEASE</version>
     </parent>
 
     <groupId>uk.gov.defra.datareturns</groupId>
@@ -16,46 +16,27 @@
     <packaging>pom</packaging>
 
     <prerequisites>
-        <maven>3.1</maven>
+        <maven>3.3.9</maven>
     </prerequisites>
 
     <name>Defra Data-Returns API Parent</name>
     <description>Defra Data-Returns Platform API Parent project</description>
     <url>https://github.com/DEFRA/data-returns-api-platform/</url>
 
-    <organization>
-        <name>Environment Agency</name>
-        <url>http://www.environment-agency.gov.uk</url>
-    </organization>
-
-    <developers>
-        <developer>
-            <id>sam</id>
-            <name>Sam Gardner-Dell</name>
-            <email>sam.gardner-dell at environment-agency.gov.uk</email>
-        </developer>
-        <developer>
-            <id>Graham</id>
-            <name>Graham Willis</name>
-            <email>graham.willis@druidwood.co.uk</email>
-        </developer>
-    </developers>
-
     <scm>
         <url>https://github.com/DEFRA/data-returns-api-platform</url>
     </scm>
-
-    <distributionManagement>
-        <site>
-            <id>root-site</id>
-            <url>file:///</url>
-        </site>
-    </distributionManagement>
 
     <repositories>
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
+        </repository>
+
+        <repository>
+            <id>jcenter-snapshots</id>
+            <name>jcenter</name>
+            <url>http://oss.jfrog.org/artifactory/oss-snapshot-local/</url>
         </repository>
     </repositories>
 
@@ -90,32 +71,31 @@
         <spring-boot-plugin.jmx.port>9001</spring-boot-plugin.jmx.port>
 
         <!--Lombok -->
-        <lombok.version>1.18.2</lombok.version>
+        <lombok.version>1.18.4</lombok.version>
 
         <docker.image.prefix>drp</docker.image.prefix>
-        <dockerfile-plugin.version>1.4.4</dockerfile-plugin.version>
+        <dockerfile-plugin.version>1.4.8</dockerfile-plugin.version>
 
-        <spring-boot.version>1.5.17.RELEASE</spring-boot.version>
-        <springfox.version>2.9.2</springfox.version>
+        <spring-boot.version>2.1.0.RELEASE</spring-boot.version>
+        <springfox.version>3.0.0-SNAPSHOT</springfox.version>
 
         <!-- Database driver versions -->
         <postgresql.version>42.2.5</postgresql.version>
         <h2.version>1.4.197</h2.version>
 
-        <!-- Hibernate -->
-        <hibernate.version>5.2.12.Final</hibernate.version>
-        <hibernate-search.version>5.8.2.Final</hibernate-search.version>
-        <hibernate-validator.version>5.4.2.Final</hibernate-validator.version>
+        <!-- Cache providers -->
+        <caffeine.version>2.6.2</caffeine.version>
+
+        <!-- hibernate validator -->
+        <hibernate-validator.version>6.0.13.Final</hibernate-validator.version>
 
         <!-- Apache commons libraries -->
-        <commons-lang3.version>3.8</commons-lang3.version>
+        <commons-lang3.version>3.8.1</commons-lang3.version>
         <commons-collections4.version>4.2</commons-collections4.version>
         <commons-io.version>2.6</commons-io.version>
-        <commons-text.version>1.4</commons-text.version>
+        <commons-text.version>1.6</commons-text.version>
+        <reflections.version>0.9.11</reflections.version>
 
-        <jgrapht-core.version>1.2.0</jgrapht-core.version>
-
-        <liquibase-slf4j.version>2.0.0</liquibase-slf4j.version>
         <liquibase-hibernate5.version>3.6</liquibase-hibernate5.version>
 
         <logback.version>1.2.3</logback.version>
@@ -125,28 +105,26 @@
         <aws.java.sdk.version>1.11.179</aws.java.sdk.version>
 
         <!-- Test -->
-        <rest-assured.version>3.1.1</rest-assured.version>
+        <rest-assured.version>3.2.0</rest-assured.version>
 
         <!-- Reporting -->
-        <owasp-dependency-check-maven.version>3.3.1</owasp-dependency-check-maven.version>
+        <owasp-dependency-check-maven.version>3.3.4</owasp-dependency-check-maven.version>
         <jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
-        <findbugs-maven-plugin.version>3.0.5</findbugs-maven-plugin.version>
-        <findbugs-annotations-plugin.version>3.0.1</findbugs-annotations-plugin.version>
+        <spotbugs-maven-plugin.version>3.1.8</spotbugs-maven-plugin.version>
 
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
         <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
-        <checkstyle-puppycrawl.version>8.12</checkstyle-puppycrawl.version>
-        <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
-        <maven-surefire-report-plugin.version>2.22.0</maven-surefire-report-plugin.version>
-        <maven-failsafe-plugin.version>2.22.0</maven-failsafe-plugin.version>
+        <checkstyle-puppycrawl.version>8.14</checkstyle-puppycrawl.version>
+        <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
+        <maven-surefire-report-plugin.version>2.22.1</maven-surefire-report-plugin.version>
+        <maven-failsafe-plugin.version>2.22.1</maven-failsafe-plugin.version>
         <maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
         <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
         <maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
         <maven-site-plugin.version>3.7.1</maven-site-plugin.version>
-        <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
+        <maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
         <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
-        <sql-maven-plugin.version>1.5</sql-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -190,32 +168,11 @@
                 <artifactId>h2</artifactId>
                 <version>${h2.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-search-orm</artifactId>
-                <version>${hibernate-search.version}</version>
-            </dependency>
 
             <dependency>
-                <groupId>org.hibernate</groupId>
+                <groupId>org.hibernate.validator</groupId>
                 <artifactId>hibernate-validator</artifactId>
                 <version>${hibernate-validator.version}</version>
-            </dependency>
-
-            <!-- Hazelcast 2nd level cache -->
-            <!--
-            <dependency>
-                <groupId>com.hazelcast</groupId>
-                <artifactId>hazelcast-hibernate52</artifactId>
-                <version>1.2.2</version>
-            </dependency>
-            -->
-
-            <!-- special dependency to fix liquibase's logging fetish -->
-            <dependency>
-                <groupId>com.mattbertolini</groupId>
-                <artifactId>liquibase-slf4j</artifactId>
-                <version>${liquibase-slf4j.version}</version>
             </dependency>
 
             <!-- Errbit error reporting -->
@@ -255,18 +212,20 @@
             <dependency>
                 <groupId>org.reflections</groupId>
                 <artifactId>reflections</artifactId>
-                <version>0.9.11</version>
+                <version>${reflections.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>23.6-jre</version>
-            </dependency>
-
             <dependency>
                 <groupId>io.rest-assured</groupId>
                 <artifactId>rest-assured</artifactId>
                 <version>${rest-assured.version}</version>
+            </dependency>
+
+
+            <!-- Ensure min version of jaxb-impl compatible with jdk11 (remove in future release) -->
+            <dependency>
+                <groupId>com.sun.xml.bind</groupId>
+                <artifactId>jaxb-impl</artifactId>
+                <version>[2.3.1,)</version>
             </dependency>
 
             <dependency>
@@ -283,22 +242,22 @@
 
     <!-- Common submodule dependencies -->
     <dependencies>
+        <!-- Cache providers -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+            <version>${caffeine.version}</version>
+        </dependency>
+
         <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>compile</scope>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.reflections</groupId>
-            <artifactId>reflections</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
         </dependency>
 
         <!-- Apache commons -->
@@ -322,11 +281,19 @@
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
         </dependency>
+
         <dependency>
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
             <version>1</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -342,8 +309,14 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.security.oauth.boot</groupId>
+            <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-undertow</artifactId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -397,23 +370,12 @@
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-search-orm</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
             <artifactId>hibernate-envers</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
-        </dependency>
-
-        <!-- special dependency to fix liquibase's logging fetish -->
-        <dependency>
-            <groupId>com.mattbertolini</groupId>
-            <artifactId>liquibase-slf4j</artifactId>
-            <version>${liquibase-slf4j.version}</version>
         </dependency>
 
         <!-- Errbit error reporting -->
@@ -427,24 +389,18 @@
             <groupId>org.liquibase.ext</groupId>
             <artifactId>liquibase-hibernate5</artifactId>
             <version>${liquibase-hibernate5.version}</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
 
         <!--Hibernate validator -->
         <dependency>
-            <groupId>org.hibernate</groupId>
+            <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jgrapht</groupId>
-            <artifactId>jgrapht-core</artifactId>
-            <version>${jgrapht-core.version}</version>
         </dependency>
 
         <!-- Test -->
@@ -463,12 +419,10 @@
             <artifactId>rest-assured</artifactId>
             <scope>test</scope>
         </dependency>
-
-
         <dependency>
-            <groupId>com.google.code.findbugs</groupId>
-            <artifactId>findbugs-annotations</artifactId>
-            <version>${findbugs-annotations-plugin.version}</version>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-annotations</artifactId>
+            <version>${spotbugs-maven-plugin.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -586,9 +540,9 @@
                 </plugin>
 
                 <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>findbugs-maven-plugin</artifactId>
-                    <version>${findbugs-maven-plugin.version}</version>
+                    <groupId>com.github.spotbugs</groupId>
+                    <artifactId>spotbugs-maven-plugin</artifactId>
+                    <version>${spotbugs-maven-plugin.version}</version>
                     <configuration>
                         <excludeFilterFile>policies/findbugs/findbugs-exclude.xml</excludeFilterFile>
                         <xmlOutput>true</xmlOutput>
@@ -629,12 +583,6 @@
                     <artifactId>liquibase-maven-plugin</artifactId>
                     <version>${liquibase.version}</version>
                     <configuration>
-                        <systemProperties>
-                            <property>
-                                <name>hibernate.search.default.indexBase</name>
-                                <value>/tmp</value>
-                            </property>
-                        </systemProperties>
                         <diffChangeLogFile>${project.build.directory}/liquibase-diff-${maven.build.timestamp}.xml
                         </diffChangeLogFile>
                         <propertyFile>src/main/resources/db/changelog/liquibase.properties</propertyFile>
@@ -663,7 +611,7 @@
                             <version>${spring-boot.version}</version>
                         </dependency>
                         <dependency>
-                            <groupId>org.hibernate</groupId>
+                            <groupId>org.hibernate.validator</groupId>
                             <artifactId>hibernate-validator</artifactId>
                             <version>${hibernate-validator.version}</version>
                         </dependency>
@@ -686,12 +634,6 @@
                     <artifactId>exec-maven-plugin</artifactId>
                     <version>${exec-maven-plugin.version}</version>
                 </plugin>
-
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>sql-maven-plugin</artifactId>
-                    <version>${sql-maven-plugin.version}</version>
-                </plugin>
             </plugins>
         </pluginManagement>
 
@@ -709,7 +651,7 @@
                         <configuration>
                             <rules>
                                 <requireMavenVersion>
-                                    <version>[3.1,)</version>
+                                    <version>[3.3.9,)</version>
                                 </requireMavenVersion>
                             </rules>
                         </configuration>
@@ -757,8 +699,8 @@
             </plugin>
 
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
                 <executions>
                     <execution>
                         <goals>
@@ -869,7 +811,6 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>${start-class}</mainClass>
                     <executable>true</executable>
                 </configuration>
             </plugin>
@@ -1015,8 +956,8 @@
             </plugin>
 
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
             </plugin>
 
             <plugin>

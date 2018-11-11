@@ -4,7 +4,7 @@ import com.google.common.base.Charsets;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.LogDetail;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.context.embedded.EmbeddedWebApplicationContext;
+import org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -24,11 +24,11 @@ import org.springframework.test.context.support.AbstractTestExecutionListener;
 public class RestAssuredTestListener extends AbstractTestExecutionListener implements TestExecutionListener {
     @Override
     public void beforeTestClass(final TestContext testContext) {
-        if (testContext.getApplicationContext() instanceof EmbeddedWebApplicationContext) {
-            final EmbeddedWebApplicationContext context = (EmbeddedWebApplicationContext) testContext.getApplicationContext();
+        if (testContext.getApplicationContext() instanceof ServletWebServerApplicationContext) {
+            final ServletWebServerApplicationContext context = (ServletWebServerApplicationContext) testContext.getApplicationContext();
             RestAssured.reset();
             RestAssured.baseURI = "http://localhost";
-            RestAssured.port = context.getEmbeddedServletContainer().getPort();
+            RestAssured.port = context.getWebServer().getPort();
             RestAssured.basePath = "/api";
             RestAssured.config().getEncoderConfig().defaultContentCharset(Charsets.UTF_8);
             RestAssured.enableLoggingOfRequestAndResponseIfValidationFails(LogDetail.ALL);

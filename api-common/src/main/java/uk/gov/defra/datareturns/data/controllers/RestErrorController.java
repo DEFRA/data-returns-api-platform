@@ -3,6 +3,7 @@ package uk.gov.defra.datareturns.data.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,7 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 @ConditionalOnWebApplication
-public class RestErrorController implements org.springframework.boot.autoconfigure.web.ErrorController {
+public class RestErrorController implements ErrorController {
     /**
      * spring boot server properties bean
      */

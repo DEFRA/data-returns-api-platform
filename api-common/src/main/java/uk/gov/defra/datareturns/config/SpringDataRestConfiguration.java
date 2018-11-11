@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.support.ConfigurableConversionService;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.rest.core.config.Projection;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.core.event.ValidatingRepositoryEventListener;
@@ -103,9 +104,10 @@ public class SpringDataRestConfiguration implements RepositoryRestConfigurer {
     @Bean
     public HateoasPageableHandlerMethodArgumentResolver customResolver(final HateoasPageableHandlerMethodArgumentResolver pageableResolver) {
         pageableResolver.setOneIndexedParameters(true);
-        pageableResolver.setFallbackPageable(null);
-        // TODO: Spring boot 2:
-//        pageableResolver.setFallbackPageable(Pageable.unpaged());
+
+        // Would prefer to use pageableResolver.setFallbackPageable(Pageable.unpaged()) but this doesn't currently work!
+        pageableResolver.setMaxPageSize(Integer.MAX_VALUE);
+        pageableResolver.setFallbackPageable(PageRequest.of(0, Integer.MAX_VALUE));
         return pageableResolver;
     }
 }

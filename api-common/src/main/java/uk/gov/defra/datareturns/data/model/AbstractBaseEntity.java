@@ -11,11 +11,11 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Version;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Objects;
 
@@ -32,29 +32,12 @@ import java.util.Objects;
 )
 @Getter
 @Setter
-public abstract class AbstractBaseEntity {
-    /**
-     * ID Generator Name
-     */
-    public static final String DEFINITIONS_ID_GENERATOR = "definitions_idgen";
-    /**
-     * ID Generator Strategy
-     */
-    public static final String DEFINITIONS_ID_SEQUENCE_STRATEGY = "org.hibernate.id.enhanced.SequenceStyleGenerator";
-
-    /**
-     * Primary key of the entity
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = DEFINITIONS_ID_GENERATOR)
-    @Column(name = "id")
-    @ApiModelProperty(readOnly = true)
-    private Long id;
-
+public abstract class AbstractBaseEntity<ID> implements Identifiable<ID> {
     /**
      * Creation date of the entity
      */
     @CreatedDate
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false, updatable = false)
     @JsonProperty("_created")
     @ApiModelProperty(readOnly = true)
@@ -65,6 +48,7 @@ public abstract class AbstractBaseEntity {
      * Last modified date of the entity
      */
     @LastModifiedDate
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     @JsonProperty("_lastModified")
     @ApiModelProperty(readOnly = true)
@@ -77,7 +61,8 @@ public abstract class AbstractBaseEntity {
     @Version
     @Column(nullable = false)
     @ApiModelProperty(readOnly = true)
-    private short version;
+    @SuppressFBWarnings("EI_EXPOSE_REP")
+    private Timestamp version;
 
     @Override
     public final boolean equals(final Object o) {
