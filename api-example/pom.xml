@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>uk.gov.defra.datareturns</groupId>
+        <artifactId>api-parent</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../api-parent</relativePath>
+    </parent>
+
+    <artifactId>api-example</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>Defra Data-Returns API Example</name>
+    <description>Defra Data-Returns API Examples</description>
+
+    <properties>
+        <start-class>uk.gov.defra.datareturns.ExampleApi</start-class>
+        <spring-boot-plugin.jmx.port>9003</spring-boot-plugin.jmx.port>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>uk.gov.defra.datareturns</groupId>
+            <artifactId>api-common</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>uk.gov.defra.datareturns</groupId>
+            <artifactId>api-common</artifactId>
+            <version>1.0.0</version>
+            <type>test-jar</type>
+            <classifier>testcommons</classifier>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

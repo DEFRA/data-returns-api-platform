@@ -2,6 +2,7 @@ package uk.gov.defra.datareturns.data;
 
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.Repository;
+import org.springframework.lang.NonNull;
 
 import java.io.Serializable;
 import java.util.Optional;
@@ -20,7 +21,7 @@ public interface ReadOnlyRepository<T, ID extends Serializable> extends Reposito
      * @return the entity with the given id or {@literal Optional#empty()} if none found
      * @throws IllegalArgumentException if {@code id} is {@literal null}.
      */
-    Optional<T> findById(ID id);
+    Optional<T> findById(@NonNull ID id);
 
     /**
      * Returns whether an entity with the given id exists.

@@ -1,6 +1,6 @@
 package uk.gov.defra.datareturns.config;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,10 +16,10 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  */
 @Configuration
 @EnableCaching
-@SuppressWarnings("checkstyle:HideUtilityClassConstructor")
+@SuppressWarnings({"checkstyle:HideUtilityClassConstructor", "NonFinalUtilityClass"})
 public class SpringCacheConfiguration {
     @Bean
-    @ConditionalOnProperty(name = "spring.cache.type", havingValue = "redis")
+    @ConditionalOnBean(RedisConnectionFactory.class)
     public RedisTemplate<Object, Object> redisTemplate(final RedisConnectionFactory connectionFactory) {
         final RedisTemplate<Object, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(connectionFactory);

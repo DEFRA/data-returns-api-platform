@@ -1,0 +1,23 @@
+###############################################################################
+# Example Api Configuration Settings
+###############################################################################
+spring:
+  application:
+    name: Example API
+  datasource:
+    url: jdbc:postgresql://0.0.0.0:5432/example_api
+    username: example_owner
+    password: example_owner
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+  security:
+    user:
+      password: example
+
+# Configuration for the web server
+server:
+  servlet:
+    application-display-name: example_api
+  port: 4080
+---

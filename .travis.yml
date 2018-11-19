@@ -17,5 +17,5 @@ before_script:
 - ./cc-test-reporter before-build
 
 after_script:
-- JACOCO_SOURCE_PATH=api-common/src/main/java ./cc-test-reporter format-coverage api-common/target/site/jacoco/jacoco.xml --input-type jacoco
+- JACOCO_SOURCE_PATH=api-common/src/main/java ./cc-test-reporter format-coverage target/site/jacoco-aggregate/jacoco.xml --input-type jacoco
 - ./cc-test-reporter upload-coverage

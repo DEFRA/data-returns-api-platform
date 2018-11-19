@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
-import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -31,7 +30,6 @@ import java.util.Objects;
         }
 )
 @Getter
-@Setter
 public abstract class AbstractBaseEntity<ID> implements Identifiable<ID> {
     /**
      * Creation date of the entity

@@ -20,10 +20,14 @@ public final class ValidationUtil {
      *
      * @param context the validator context
      * @param message the message associated with the constraint violation
+     * @param node    the node that caused the violation
      * @return always returns false (to indicate validation failed)
      */
-    public static boolean handleError(final ConstraintValidatorContext context, final String message) {
-        return handleError(context, message, null);
+    public static boolean handleError(final ConstraintValidatorContext context, final String message, final String node) {
+        if (node == null) {
+            return handleError(context, message, ConstraintValidatorContext.ConstraintViolationBuilder::addBeanNode);
+        }
+        return handleError(context, message, b -> b.addNode(node));
     }
 
     /**

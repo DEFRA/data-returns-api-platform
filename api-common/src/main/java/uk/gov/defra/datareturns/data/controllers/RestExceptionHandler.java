@@ -1,8 +1,8 @@
 package uk.gov.defra.datareturns.data.controllers;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.MessageSourceAccessor;
@@ -14,6 +14,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.lang.NonNull;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
@@ -63,8 +64,11 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
      * @return a {@code ResponseEntity} instance
      */
     @Override
-    protected ResponseEntity<Object> handleHttpMessageNotReadable(final HttpMessageNotReadableException ex, final HttpHeaders headers,
-                                                                  final HttpStatus status, final WebRequest request) {
+    protected @NonNull
+    ResponseEntity<Object> handleHttpMessageNotReadable(@NonNull final HttpMessageNotReadableException ex,
+                                                        @NonNull final HttpHeaders headers,
+                                                        @NonNull final HttpStatus status,
+                                                        @NonNull final WebRequest request) {
         Throwable root = ex.getMostSpecificCause();
         if (root instanceof AccessDeniedException) {
             AccessDeniedError error = AccessDeniedError.of("Access to associated resource denied", ex.getMessage());
@@ -77,12 +81,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     /**
      * Handles {@link RepositoryConstraintViolationException}s by returning {@code 400 Bad Request}.
      * <p>
-     * This handler has been added to workaround an issue in spring data rest whereby class-level validation errors
+     * This handler has been added to workaround an issue in spring data rest whereby class-level validation error
      * are not returned if the object being persisted is the top-level object.
      * <p>
-     * It was observed that the pollution inventory Submission class-level validation errors were not output whereas
-     * the class-level validation errors for Releases/Transfers were output as these are nested within the Submission object.
-     * It doesn't appear that this issue affects field-level validation errors.
+     * It was observed that the pollution inventory Submission class-level validation error were not output whereas
+     * the class-level validation error for Releases/Transfers were output as these are nested within the Submission object.
+     * It doesn't appear that this issue affects field-level validation error.
      * <p>
      * At the time of writing, these issues are outstanding but assigned to the SDR team:
      * <a href="https://jira.spring.io/browse/DATAREST-926">DATAREST-926</a>
@@ -101,7 +105,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
 
     /**
-     * Custom validation error response - as per the spring data rest implementation but also extracts global errors.
+     * Custom validation error response - as per the spring data rest implementation but also extracts global error.
      *
      * @author Sam Gardner-Dell
      */
@@ -135,7 +139,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     /**
      * Response data for constraint violation exceptions
      */
-    @Value(staticConstructor = "of")
+    @AllArgsConstructor(staticName = "of")
+    @Getter
     private static class ValidationError {
         private String entity;
         private String property;
@@ -146,7 +151,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     /**
      * Response data for access denied error
      */
-    @Value(staticConstructor = "of")
+    @AllArgsConstructor(staticName = "of")
+    @Getter
     private static class AccessDeniedError {
         private String error;
         private String cause;

@@ -20,7 +20,6 @@ import org.springframework.validation.Validator;
 import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver;
 
 import javax.persistence.Entity;
-import javax.persistence.EntityManagerFactory;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -37,15 +36,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class SpringDataRestConfiguration implements RepositoryRestConfigurer {
     /**
-     * the JPA {@link EntityManagerFactory}
-     */
-    private final EntityManagerFactory factory;
-
-    /**
      * Reference to the spring managed {@link Validator}
      */
     private final Validator validator;
-
 
     @Override
     public final void configureRepositoryRestConfiguration(final RepositoryRestConfiguration config) {
@@ -67,7 +60,7 @@ public class SpringDataRestConfiguration implements RepositoryRestConfigurer {
                     .collect(Collectors.toSet()));
 
             log.info("Registering projection {} from class {} with entity classes {}", p.name(), c.getSimpleName(), entityClasses);
-            config.getProjectionConfiguration().addProjection(c, p.name(), entityClasses.toArray(new Class[entityClasses.size()]));
+            config.getProjectionConfiguration().addProjection(c, p.name(), entityClasses.toArray(new Class[0]));
         }
     }
 
@@ -104,7 +97,6 @@ public class SpringDataRestConfiguration implements RepositoryRestConfigurer {
     @Bean
     public HateoasPageableHandlerMethodArgumentResolver customResolver(final HateoasPageableHandlerMethodArgumentResolver pageableResolver) {
         pageableResolver.setOneIndexedParameters(true);
-
         // Would prefer to use pageableResolver.setFallbackPageable(Pageable.unpaged()) but this doesn't currently work!
         pageableResolver.setMaxPageSize(Integer.MAX_VALUE);
         pageableResolver.setFallbackPageable(PageRequest.of(0, Integer.MAX_VALUE));

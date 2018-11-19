@@ -1,6 +1,5 @@
 package uk.gov.defra.datareturns.config;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -26,7 +25,6 @@ import static springfox.documentation.service.ApiInfo.DEFAULT_CONTACT;
 @ConditionalOnWebApplication
 @EnableSwagger2WebMvc
 @Import(springfox.documentation.spring.data.rest.configuration.SpringDataRestConfiguration.class)
-@Slf4j
 public class SwaggerConfiguration {
     @Bean
     public Docket api(final ApplicationContext context) {

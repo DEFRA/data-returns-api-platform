@@ -5,6 +5,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Scope;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 /**
@@ -31,7 +32,7 @@ public class SpringApplicationContextProvider implements ApplicationContextAware
 
     @SuppressFBWarnings("ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD")
     @Override
-    public void setApplicationContext(final ApplicationContext ctx) {
+    public void setApplicationContext(@NonNull final ApplicationContext ctx) {
         context = ctx;
     }
 }

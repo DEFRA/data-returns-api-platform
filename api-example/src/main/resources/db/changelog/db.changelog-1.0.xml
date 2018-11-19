@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+
+    <property name="now" value="now()"/>
+
+    <!--
+    ****************************************************************
+    Envers audit revision info
+    ****************************************************************
+    -->
+
+    <changeSet id="create-table: revinfo" author="Defra">
+        <createSequence sequenceName="revision_generator" startValue="1" incrementBy="1"/>
+        <createTable tableName="revinfo">
+            <column name="rev" type="integer" defaultValueSequenceNext="revision_generator">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="revtstmp" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <rollback>
+            <dropTable tableName="revinfo"/>
+            <dropSequence sequenceName="revision_generator"/>
+        </rollback>
+    </changeSet>
+
+    <!--
+    ****************************************************************
+    Reference Data - Regions
+    ****************************************************************
+    -->
+    <changeSet id="create-table: example_region" author="Defra">
+        <!-- NOTE: startValue = incrementBy + records loaded when initial data inserted -->
+        <createSequence sequenceName="example_region_id_seq" startValue="10" incrementBy="1"/>
+
+        <createTable tableName="example_region">
+            <column name="id" type="bigint" defaultValueSequenceNext="example_region_id_seq">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addUniqueConstraint columnNames="name" constraintName="uniq_region_name" tableName="example_region"/>
+
+        <rollback>
+            <dropTable tableName="example_region"/>
+            <dropSequence sequenceName="example_region_id_seq"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="create-table: example_region_aud" author="Defra">
+        <createTable tableName="example_region_aud">
+            <column name="id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rev" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="revtype" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar"/>
+        </createTable>
+
+        <addPrimaryKey tableName="example_region_aud" columnNames="id, rev"/>
+        <rollback>
+            <dropTable tableName="example_region_aud"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="load-table: example_region" author="Defra">
+        <loadData file="db/data/regions.csv"
+                  tableName="example_region">
+            <column name="id" type="numeric" header="id"/>
+            <column name="name" type="string" header="name"/>
+            <column name="created" type="date" header="created"/>
+            <column name="last_modified" type="date" header="last_modified"/>
+            <column name="version" type="date" header="version"/>
+        </loadData>
+
+        <rollback>
+            <delete tableName="example_region"/>
+        </rollback>
+    </changeSet>
+
+    <!--
+    ****************************************************************
+    Submissions
+    ****************************************************************
+    -->
+    <changeSet id="create-table: example_submission" author="Defra">
+        <createSequence sequenceName="example_submission_id_seq" startValue="50" incrementBy="50"/>
+
+        <createTable tableName="example_submission">
+            <column name="id" type="bigint" defaultValueSequenceNext="example_submission_id_seq">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="contact_id" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="season" type="smallint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(12)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="month" type="smallint"/>
+            <column name="created" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addUniqueConstraint columnNames="contact_id, season" constraintName="uniq_contact_id_and_season" tableName="example_submission"/>
+
+        <createIndex indexName="example_submission_season_idx" tableName="example_submission">
+            <column name="season"/>
+        </createIndex>
+
+        <rollback>
+            <dropIndex tableName="example_submission" indexName="example_submission_season_idx"/>
+            <dropTable tableName="example_submission"/>
+            <dropSequence sequenceName="example_submission_id_seq"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="create-table: example_submission_aud" author="Defra">
+        <createTable tableName="example_submission_aud">
+            <column name="id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rev" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="revtype" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="contact_id" type="varchar"/>
+            <column name="season" type="smallint"/>
+            <column name="status" type="varchar(12)"/>
+            <column name="month" type="smallint"/>
+        </createTable>
+
+        <addPrimaryKey tableName="example_submission_aud" columnNames="id, rev"/>
+        <rollback>
+            <dropTable tableName="example_submission_aud"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

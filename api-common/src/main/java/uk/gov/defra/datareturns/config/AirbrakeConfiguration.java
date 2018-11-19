@@ -1,27 +1,25 @@
 package uk.gov.defra.datareturns.config;
 
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-import java.net.URL;
+import java.net.URI;
 
 /**
- * Errbit (airbrake) integration configuration
+ * Configuration settings for the airbrake log appender
  */
 @Configuration
 @EnableConfigurationProperties
-@ConfigurationProperties(prefix = "errbit")
-@RequiredArgsConstructor
-@Slf4j
-@Data
-public class ErrbitConfiguration {
+@ConfigurationProperties(prefix = "airbrake")
+@Getter
+@Setter
+public class AirbrakeConfiguration {
     private boolean enabled;
     private String env;
-    private String apiKey;
-    private URL url;
-
+    private String projectKey;
+    private URI host;
+    private String apiPath;
 }
