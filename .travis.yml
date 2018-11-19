@@ -17,7 +17,7 @@ before_script:
 - ./cc-test-reporter before-build
 
 after_script:
-- JACOCO_SOURCE_PATH=api-common/src/main/java ./cc-test-reporter format-coverage api-common/target/site/jacoco/jacoco.xml --input-type jacoco --output coverage/codeclimate.apicommon.json
-- JACOCO_SOURCE_PATH=api-example/src/main/java ./cc-test-reporter format-coverage api-example/target/site/jacoco/jacoco.xml --input-type jacoco --output coverage/codeclimate.apiexample.json
+- JACOCO_SOURCE_PATH=api-common/src/main/java ./cc-test-reporter format-coverage api-common/target/site/jacoco/jacoco.xml --input-type jacoco --output coverage/codeclimate.unit.json
+- JACOCO_SOURCE_PATH="api-common/src/main/java api-example/src/main/java" ./cc-test-reporter format-coverage api-example/target/site/jacoco/jacoco.xml --input-type jacoco --output coverage/codeclimate.integration.json
 - ./cc-test-reporter sum-coverage coverage/codeclimate.*.json -p 2
 - ./cc-test-reporter upload-coverage
