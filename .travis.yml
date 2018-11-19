@@ -17,5 +17,8 @@ before_script:
 - ./cc-test-reporter before-build
 
 after_script:
-- JACOCO_SOURCE_PATH="api-common/src/main/java api-example/src/main/java" ./cc-test-reporter format-coverage api-example/target/site/jacoco/jacoco.xml --input-type jacoco
+# Currently the code-climate test reporter does not support JaCoCo aggregate reporting.  The problem occurs due to additional <group> elements in the
+# coverage report xml file.  The sed command is a dirty workaround to strip group elements from the xml data.
+- sed -e 's/<[\/]\?group[^>]*>//g' target/site/jacoco-aggregate/jacoco.xml > target/site/jacoco-aggregate/jacoco-codeclimatecompat.xml
+- JACOCO_SOURCE_PATH="api-common/src/main/java api-example/src/main/java" ./cc-test-reporter format-coverage target/site/jacoco-aggregate/jacoco-codeclimatecompat.xml --input-type jacoco
 - ./cc-test-reporter upload-coverage
