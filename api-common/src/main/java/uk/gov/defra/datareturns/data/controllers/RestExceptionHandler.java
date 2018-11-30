@@ -10,19 +10,14 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.data.rest.core.RepositoryConstraintViolationException;
 import org.springframework.data.rest.core.ValidationErrors;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.lang.NonNull;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.inject.Inject;
@@ -50,31 +45,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @Inject
     public RestExceptionHandler(final ApplicationContext applicationContext) {
         this.messageSourceAccessor = new MessageSourceAccessor(applicationContext);
-    }
-
-
-    /**
-     * Handle {@link HttpMessageNotReadableException}s - extends the default functionality to intercept exceptions generated where the root
-     * cause is an {@link AccessDeniedException} and issue a suitable response code for these cases.
-     *
-     * @param ex      the exception
-     * @param headers the headers to be written to the response
-     * @param status  the selected response status
-     * @param request the current request
-     * @return a {@code ResponseEntity} instance
-     */
-    @Override
-    protected @NonNull
-    ResponseEntity<Object> handleHttpMessageNotReadable(@NonNull final HttpMessageNotReadableException ex,
-                                                        @NonNull final HttpHeaders headers,
-                                                        @NonNull final HttpStatus status,
-                                                        @NonNull final WebRequest request) {
-        Throwable root = ex.getMostSpecificCause();
-        if (root instanceof AccessDeniedException) {
-            AccessDeniedError error = AccessDeniedError.of("Access to associated resource denied", ex.getMessage());
-            return super.handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.FORBIDDEN, request);
-        }
-        return super.handleHttpMessageNotReadable(ex, headers, status, request);
     }
 
 
@@ -146,15 +116,5 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         private String property;
         private Object invalidValue;
         private String message;
-    }
-
-    /**
-     * Response data for access denied error
-     */
-    @AllArgsConstructor(staticName = "of")
-    @Getter
-    private static class AccessDeniedError {
-        private String error;
-        private String cause;
     }
 }
