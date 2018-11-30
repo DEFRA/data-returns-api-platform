@@ -86,6 +86,12 @@ server:
   compression:
     enabled: false
 
+# DNS Cache settings for the java.net package - reduced from jvm default to support rds failover
+dns:
+  ttl: 30
+  negative-ttl: 10
+
+
 # Default logging levels (provide minimal level of logging here)
 logging:
   level:
