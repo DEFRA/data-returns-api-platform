@@ -11,11 +11,4 @@ public interface Identifiable<T> {
      * @return the entity identifier
      */
     T getId();
-
-    /**
-     * Set the entity identifier
-     *
-     * @param id the entity identifier to set
-     */
-    void setId(T id);
 }
