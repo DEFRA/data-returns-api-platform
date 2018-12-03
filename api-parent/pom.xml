@@ -110,7 +110,7 @@
         <!-- Reporting -->
         <owasp-dependency-check-maven.version>3.3.4</owasp-dependency-check-maven.version>
         <jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
-        <spotbugs-maven-plugin.version>3.1.8</spotbugs-maven-plugin.version>
+        <spotbugs-maven-plugin.version>3.1.9</spotbugs-maven-plugin.version>
 
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
