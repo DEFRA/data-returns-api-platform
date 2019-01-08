@@ -2,6 +2,7 @@ package uk.gov.defra.datareturns.data;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
@@ -17,7 +18,7 @@ import java.io.Serializable;
  * @author Sam Gardner-Dell
  */
 @NoRepositoryBean
-public interface BaseRepository<E, ID extends Serializable> extends JpaRepository<E, ID> {
+public interface BaseRepository<E, ID extends Serializable> extends JpaRepository<E, ID>, JpaSpecificationExecutor<E> {
     /**
      * @return JPA entity information to be retrieved for this repository
      */

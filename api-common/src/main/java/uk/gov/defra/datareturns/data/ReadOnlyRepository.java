@@ -1,5 +1,6 @@
 package uk.gov.defra.datareturns.data;
 
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.Repository;
 import org.springframework.lang.NonNull;
@@ -13,7 +14,7 @@ import java.util.Optional;
  * @author Sam Gardner-Dell
  */
 @NoRepositoryBean
-public interface ReadOnlyRepository<T, ID extends Serializable> extends Repository<T, ID> {
+public interface ReadOnlyRepository<E, ID extends Serializable> extends Repository<E, ID>, JpaSpecificationExecutor<E> {
     /**
      * Retrieves an entity by its id.
      *
@@ -21,7 +22,7 @@ public interface ReadOnlyRepository<T, ID extends Serializable> extends Reposito
      * @return the entity with the given id or {@literal Optional#empty()} if none found
      * @throws IllegalArgumentException if {@code id} is {@literal null}.
      */
-    Optional<T> findById(@NonNull ID id);
+    Optional<E> findById(@NonNull ID id);
 
     /**
      * Returns whether an entity with the given id exists.
@@ -37,7 +38,7 @@ public interface ReadOnlyRepository<T, ID extends Serializable> extends Reposito
      *
      * @return all entities
      */
-    Iterable<T> findAll();
+    Iterable<E> findAll();
 
     /**
      * Returns all instances of the type with the given IDs.
@@ -45,7 +46,7 @@ public interface ReadOnlyRepository<T, ID extends Serializable> extends Reposito
      * @param ids
      * @return
      */
-    Iterable<T> findAllById(Iterable<ID> ids);
+    Iterable<E> findAllById(Iterable<ID> ids);
 
     /**
      * Returns the number of entities available.
