@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.1.RELEASE</version>
+        <version>2.1.2.RELEASE</version>
     </parent>
 
     <groupId>uk.gov.defra.datareturns</groupId>
@@ -74,9 +74,9 @@
         <lombok.version>1.18.4</lombok.version>
 
         <docker.image.prefix>drp</docker.image.prefix>
-        <dockerfile-plugin.version>1.4.9</dockerfile-plugin.version>
+        <dockerfile-plugin.version>1.4.10</dockerfile-plugin.version>
 
-        <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
+        <spring-boot.version>2.1.2.RELEASE</spring-boot.version>
         <springfox.version>3.0.0-SNAPSHOT</springfox.version>
 
         <!-- Database driver versions -->
@@ -105,7 +105,7 @@
         <aws.java.sdk.version>1.11.179</aws.java.sdk.version>
 
         <!-- Test -->
-        <rest-assured.version>3.2.0</rest-assured.version>
+        <rest-assured.version>3.3.0</rest-assured.version>
 
         <!-- Reporting -->
         <owasp-dependency-check-maven.version>4.0.2</owasp-dependency-check-maven.version>
