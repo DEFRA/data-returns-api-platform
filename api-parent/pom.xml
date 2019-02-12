@@ -71,7 +71,7 @@
         <spring-boot-plugin.jmx.port>9001</spring-boot-plugin.jmx.port>
 
         <!--Lombok -->
-        <lombok.version>1.18.4</lombok.version>
+        <lombok.version>1.18.6</lombok.version>
 
         <docker.image.prefix>drp</docker.image.prefix>
         <dockerfile-plugin.version>1.4.10</dockerfile-plugin.version>
