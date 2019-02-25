@@ -81,7 +81,7 @@
 
         <!-- Database driver versions -->
         <postgresql.version>42.2.5</postgresql.version>
-        <h2.version>1.4.197</h2.version>
+        <h2.version>1.4.198</h2.version>
 
         <!-- Cache providers -->
         <caffeine.version>2.6.2</caffeine.version>
