@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.2.RELEASE</version>
+        <version>2.1.3.RELEASE</version>
     </parent>
 
     <groupId>uk.gov.defra.datareturns</groupId>
@@ -71,27 +71,27 @@
         <spring-boot-plugin.jmx.port>9001</spring-boot-plugin.jmx.port>
 
         <!--Lombok -->
-        <lombok.version>1.18.4</lombok.version>
+        <lombok.version>1.18.6</lombok.version>
 
         <docker.image.prefix>drp</docker.image.prefix>
         <dockerfile-plugin.version>1.4.10</dockerfile-plugin.version>
 
-        <spring-boot.version>2.1.2.RELEASE</spring-boot.version>
+        <spring-boot.version>2.1.3.RELEASE</spring-boot.version>
         <springfox.version>3.0.0-SNAPSHOT</springfox.version>
 
         <!-- Database driver versions -->
         <postgresql.version>42.2.5</postgresql.version>
-        <h2.version>1.4.197</h2.version>
+        <h2.version>1.4.198</h2.version>
 
         <!-- Cache providers -->
         <caffeine.version>2.6.2</caffeine.version>
 
         <!-- hibernate validator -->
-        <hibernate-validator.version>6.0.14.Final</hibernate-validator.version>
+        <hibernate-validator.version>6.0.15.Final</hibernate-validator.version>
 
         <!-- Apache commons libraries -->
         <commons-lang3.version>3.8.1</commons-lang3.version>
-        <commons-collections4.version>4.2</commons-collections4.version>
+        <commons-collections4.version>4.3</commons-collections4.version>
         <commons-io.version>2.6</commons-io.version>
         <commons-text.version>1.6</commons-text.version>
         <reflections.version>0.9.11</reflections.version>
@@ -110,12 +110,12 @@
         <!-- Reporting -->
         <owasp-dependency-check-maven.version>4.0.2</owasp-dependency-check-maven.version>
         <jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
-        <spotbugs-maven-plugin.version>3.1.10</spotbugs-maven-plugin.version>
+        <spotbugs-maven-plugin.version>3.1.11</spotbugs-maven-plugin.version>
 
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
         <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
-        <checkstyle-puppycrawl.version>8.16</checkstyle-puppycrawl.version>
+        <checkstyle-puppycrawl.version>8.18</checkstyle-puppycrawl.version>
         <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
         <maven-surefire-report-plugin.version>2.22.1</maven-surefire-report-plugin.version>
         <maven-failsafe-plugin.version>2.22.1</maven-failsafe-plugin.version>
@@ -203,12 +203,6 @@
                 <artifactId>commons-text</artifactId>
                 <version>${commons-text.version}</version>
             </dependency>
-            <dependency>
-                <groupId>commons-codec</groupId>
-                <artifactId>commons-codec</artifactId>
-                <version>1.10</version>
-            </dependency>
-
             <dependency>
                 <groupId>org.reflections</groupId>
                 <artifactId>reflections</artifactId>
@@ -538,7 +532,7 @@
                         <dependency>
                             <groupId>com.github.DEFRA</groupId>
                             <artifactId>defra-java-standards</artifactId>
-                            <version>4ea08a392b9f20efa5d1d23805f2c1ef4e05c234</version>
+                            <version>447da96f0826e2065371e7e75e98030017fe0c2a</version>
                         </dependency>
                     </dependencies>
                 </plugin>
@@ -556,7 +550,7 @@
                         <dependency>
                             <groupId>com.github.DEFRA</groupId>
                             <artifactId>defra-java-standards</artifactId>
-                            <version>4ea08a392b9f20efa5d1d23805f2c1ef4e05c234</version>
+                            <version>447da96f0826e2065371e7e75e98030017fe0c2a</version>
                         </dependency>
                     </dependencies>
                 </plugin>
@@ -577,7 +571,7 @@
                         <dependency>
                             <groupId>com.github.DEFRA</groupId>
                             <artifactId>defra-java-standards</artifactId>
-                            <version>4ea08a392b9f20efa5d1d23805f2c1ef4e05c234</version>
+                            <version>447da96f0826e2065371e7e75e98030017fe0c2a</version>
                         </dependency>
                     </dependencies>
                 </plugin>
