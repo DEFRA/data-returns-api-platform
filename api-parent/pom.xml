@@ -115,7 +115,7 @@
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
         <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
-        <checkstyle-puppycrawl.version>8.18</checkstyle-puppycrawl.version>
+        <checkstyle-puppycrawl.version>8.19</checkstyle-puppycrawl.version>
         <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
         <maven-surefire-report-plugin.version>2.22.1</maven-surefire-report-plugin.version>
         <maven-failsafe-plugin.version>2.22.1</maven-failsafe-plugin.version>
