@@ -27,7 +27,7 @@ public final class ValidationUtil {
         if (node == null) {
             return handleError(context, message, ConstraintValidatorContext.ConstraintViolationBuilder::addBeanNode);
         }
-        return handleError(context, message, b -> b.addNode(node));
+        return handleError(context, message, b -> b.addPropertyNode(node).addBeanNode());
     }
 
     /**

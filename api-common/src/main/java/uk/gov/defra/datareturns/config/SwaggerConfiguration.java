@@ -28,12 +28,11 @@ import static springfox.documentation.service.ApiInfo.DEFAULT_CONTACT;
 public class SwaggerConfiguration {
     @Bean
     public Docket api(final ApplicationContext context) {
-        return new Docket(DocumentationType.SWAGGER_2)
+        return new Docket(DocumentationType.SPRING_WEB)
                 .select()
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.regex("/api/.*"))
                 .build()
-                .enableUrlTemplating(false)
                 .apiInfo(apiInfo(context));
     }
 

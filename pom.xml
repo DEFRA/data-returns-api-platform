@@ -2,9 +2,9 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>uk.gov.defra.datareturns</groupId>
+    <groupId>com.github.DEFRA.data-returns-api-platform</groupId>
     <artifactId>api-platform</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <prerequisites>
@@ -37,14 +37,14 @@
     <!-- dependencies required for jacoco report aggregation -->
     <dependencies>
         <dependency>
-            <groupId>uk.gov.defra.datareturns</groupId>
+            <groupId>com.github.DEFRA.data-returns-api-platform</groupId>
             <artifactId>api-common</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>uk.gov.defra.datareturns</groupId>
+            <groupId>com.github.DEFRA.data-returns-api-platform</groupId>
             <artifactId>api-example</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
