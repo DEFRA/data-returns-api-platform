@@ -38,7 +38,7 @@ public abstract class AbstractBaseEntity<ID> implements Identifiable<ID> {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false, updatable = false)
     @JsonProperty("_created")
-    @ApiModelProperty(readOnly = true)
+    @ApiModelProperty(accessMode = ApiModelProperty.AccessMode.READ_ONLY)
     @SuppressFBWarnings("EI_EXPOSE_REP")
     private Date created;
 
@@ -49,7 +49,7 @@ public abstract class AbstractBaseEntity<ID> implements Identifiable<ID> {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     @JsonProperty("_lastModified")
-    @ApiModelProperty(readOnly = true)
+    @ApiModelProperty(accessMode = ApiModelProperty.AccessMode.READ_ONLY)
     @SuppressFBWarnings("EI_EXPOSE_REP")
     private Date lastModified;
 
@@ -58,7 +58,7 @@ public abstract class AbstractBaseEntity<ID> implements Identifiable<ID> {
      */
     @Version
     @Column(nullable = false)
-    @ApiModelProperty(readOnly = true)
+    @ApiModelProperty(accessMode = ApiModelProperty.AccessMode.READ_ONLY, dataType = "java.util.Date")
     @SuppressFBWarnings("EI_EXPOSE_REP")
     private Timestamp version;
 

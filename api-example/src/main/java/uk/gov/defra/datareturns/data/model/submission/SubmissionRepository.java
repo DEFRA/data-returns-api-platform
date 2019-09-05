@@ -1,5 +1,6 @@
 package uk.gov.defra.datareturns.data.model.submission;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import uk.gov.defra.datareturns.data.BaseRepository;
@@ -27,6 +28,7 @@ public interface SubmissionRepository extends BaseRepository<Submission, Long> {
      */
 
     @SuppressWarnings("unused")
+    @ApiOperation(value = "Retrieve a contact for the given contact identifier and season")
     Optional<Submission> getByContactIdAndSeason(@Param("contact_id") String contactId,
                                                  @Param("season") Short season);
 
