@@ -75,7 +75,7 @@
         <lombok.version>1.18.8</lombok.version>
 
         <docker.image.prefix>drp</docker.image.prefix>
-        <dockerfile-plugin.version>1.4.10</dockerfile-plugin.version>
+        <dockerfile-plugin.version>1.4.12</dockerfile-plugin.version>
 
         <spring-boot.version>2.1.7.RELEASE</spring-boot.version>
 
