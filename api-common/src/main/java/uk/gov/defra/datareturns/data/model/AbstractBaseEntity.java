@@ -2,7 +2,6 @@ package uk.gov.defra.datareturns.data.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -38,7 +37,6 @@ public abstract class AbstractBaseEntity<ID> implements Identifiable<ID> {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false, updatable = false)
     @JsonProperty("_created")
-    @ApiModelProperty(accessMode = ApiModelProperty.AccessMode.READ_ONLY)
     @SuppressFBWarnings("EI_EXPOSE_REP")
     private Date created;
 
@@ -49,7 +47,6 @@ public abstract class AbstractBaseEntity<ID> implements Identifiable<ID> {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     @JsonProperty("_lastModified")
-    @ApiModelProperty(accessMode = ApiModelProperty.AccessMode.READ_ONLY)
     @SuppressFBWarnings("EI_EXPOSE_REP")
     private Date lastModified;
 
@@ -58,7 +55,6 @@ public abstract class AbstractBaseEntity<ID> implements Identifiable<ID> {
      */
     @Version
     @Column(nullable = false)
-    @ApiModelProperty(accessMode = ApiModelProperty.AccessMode.READ_ONLY, dataType = "java.util.Date")
     @SuppressFBWarnings("EI_EXPOSE_REP")
     private Timestamp version;
 

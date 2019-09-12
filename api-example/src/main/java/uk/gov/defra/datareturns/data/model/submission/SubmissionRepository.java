@@ -1,6 +1,5 @@
 package uk.gov.defra.datareturns.data.model.submission;
 
-import io.swagger.annotations.ApiOperation;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import uk.gov.defra.datareturns.data.BaseRepository;
@@ -21,14 +20,12 @@ public interface SubmissionRepository extends BaseRepository<Submission, Long> {
     /**
      * Retrieve a submission by a given reporting reference and the year that it is applicable to
      *
-     *
      * @param contactId the reporting reference of the submission to lookup
      * @param season    the year that the submission relates to
      * @return the {@link Submission} for the given reporting reference and year or null if not found.
      */
 
     @SuppressWarnings("unused")
-    @ApiOperation(value = "Retrieve a contact for the given contact identifier and season")
     Optional<Submission> getByContactIdAndSeason(@Param("contact_id") String contactId,
                                                  @Param("season") Short season);
 
@@ -44,6 +41,7 @@ public interface SubmissionRepository extends BaseRepository<Submission, Long> {
 
     /**
      * Retrieve a list of {@link Submission}s for a set of contact ids for a given year
+     *
      * @param contactIds the contact ids of the submissions to lookup
      * @param season     the year that the submission relates to
      * @return list of {@link Submission}s for a set of contact ids for a given year

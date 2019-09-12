@@ -31,10 +31,6 @@ public class PlatformSecurityConfiguration {
         static final String[] WHITELIST = {
                 // landing page
                 "/",
-                // swagger ui
-                "/swagger-resources/**",
-                "/swagger-ui.html",
-                "/v2/api-docs",
                 "/webjars/**",
                 // hal browser
                 "/api/profile",

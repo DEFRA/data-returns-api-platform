@@ -66,12 +66,6 @@
 <h1>Data Returns API Landing Page</h1>
 <div class="buttons">
     <div>
-        <a href="swagger-ui.html">Swagger Browser</a>
-    </div>
-    <div>
-        <a href="v2/api-docs">Swagger JSON File</a>
-    </div>
-    <div>
         <a href="api/">HAL Browser</a>
     </div>
     <div>
