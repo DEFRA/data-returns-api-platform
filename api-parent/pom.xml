@@ -96,7 +96,7 @@
         <airbrake-logback.version>1.0.3</airbrake-logback.version>
 
         <!-- Test -->
-        <rest-assured.version>4.0.0</rest-assured.version>
+        <rest-assured.version>4.1.1</rest-assured.version>
 
         <!-- Reporting -->
         <owasp-dependency-check-maven.version>4.0.2</owasp-dependency-check-maven.version>
