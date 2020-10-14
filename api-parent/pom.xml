@@ -90,7 +90,7 @@
         <commons-text.version>1.7</commons-text.version>
         <reflections.version>0.9.11</reflections.version>
 
-        <liquibase-hibernate5.version>3.7</liquibase-hibernate5.version>
+        <liquibase-hibernate5.version>4.1.1</liquibase-hibernate5.version>
 
         <logback.version>1.2.3</logback.version>
         <airbrake-logback.version>1.0.3</airbrake-logback.version>
