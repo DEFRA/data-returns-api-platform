@@ -86,7 +86,7 @@
         <!-- Apache commons libraries -->
         <commons-lang3.version>3.9</commons-lang3.version>
         <commons-collections4.version>4.4</commons-collections4.version>
-        <commons-io.version>2.6</commons-io.version>
+        <commons-io.version>2.7</commons-io.version>
         <commons-text.version>1.7</commons-text.version>
         <reflections.version>0.9.11</reflections.version>
 
