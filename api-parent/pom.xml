@@ -99,7 +99,7 @@
         <rest-assured.version>4.1.1</rest-assured.version>
 
         <!-- Reporting -->
-        <owasp-dependency-check-maven.version>4.0.2</owasp-dependency-check-maven.version>
+        <owasp-dependency-check-maven.version>6.2.1</owasp-dependency-check-maven.version>
         <jacoco-maven-plugin.version>0.8.4</jacoco-maven-plugin.version>
         <spotbugs-maven-plugin.version>3.1.11</spotbugs-maven-plugin.version>
 
